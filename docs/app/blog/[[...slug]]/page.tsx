@@ -355,8 +355,8 @@ export async function generateMetadata({
 	const { slug } = await params;
 	if (!slug) {
 		return createMetadata({
-			title: "Blog - Better Auth",
-			description: "Latest updates, articles, and insights about Better Auth",
+			title: "Blog - Colbe",
+			description: "Latest updates, articles, and insights about Colbe",
 		});
 	}
 	const page = blogs.getPage(slug);

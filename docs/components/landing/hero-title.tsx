@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Megaphone } from "lucide-react";
 import Link from "next/link";
 
 export function HeroTitle() {
@@ -13,22 +14,16 @@ export function HeroTitle() {
 		>
 			<div>
 				<Link
-					href="/blog/better-auth-joins-vercel"
+					href="/blog/release"
 					className="relative inline-flex items-center gap-1.5 px-2.5 py-1 pointer-events-auto group/badge rounded-full bg-neutral-200/80 dark:bg-neutral-800/80 hover:bg-neutral-200/70 dark:hover:bg-neutral-700/50 transition-colors"
 				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="0.9em"
-						height="0.9em"
-						viewBox="0 0 24 24"
-						className="text-neutral-600 dark:text-neutral-100"
+					<Megaphone
+						className="size-[0.9em] text-neutral-600 dark:text-neutral-100"
 						aria-hidden="true"
-					>
-						<path fill="currentColor" d="M12 2L2 19.777h20z" />
-					</svg>
+					/>
 					<span className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-100 font-light">
 						Announcement{" "}
-						<span className="font-medium">| Better Auth is joining Vercel</span>
+						<span className="font-medium">| Colbe Releases Today!</span>
 					</span>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -49,19 +44,20 @@ export function HeroTitle() {
 					</svg>
 				</Link>
 				<h1 className="pt-3 sm:pt-4 text-2xl md:text-3xl xl:text-4xl text-neutral-800 dark:text-neutral-200 tracking-tight leading-tight text-balance">
-					The most comprehensive authentication framework
+					Hang out, chat, and build communities with your friends and family on
+					Colbe.
 				</h1>
 
 				{/* CTA Buttons */}
 				<div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-4 sm:pt-5 pointer-events-auto">
 					<Link
-						href="/docs/installation"
+						href="/docs"
 						className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 bg-neutral-900 text-neutral-100 dark:bg-neutral-100 dark:text-neutral-900 text-xs sm:text-sm font-medium hover:opacity-90 transition-colors"
 					>
 						Get Started
 					</Link>
 					<Link
-						href="https://dash.better-auth.com/sign-in"
+						href="/login"
 						className="relative inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 text-neutral-600 dark:text-neutral-300 text-xs sm:text-sm font-medium transition-colors group"
 					>
 						{/* Diagonal lines background */}

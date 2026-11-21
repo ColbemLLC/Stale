@@ -30,8 +30,8 @@ const nextConfig = {
 		return [
 			// Infrastructure backwards compatibility redirects
 			{
-				source: "/dashboard/:path*",
-				destination: "https://dash.better-auth.com",
+				source: "/app/:path*",
+				destination: "https://app.colbe.cc",
 				permanent: true,
 			},
 			{
@@ -39,17 +39,10 @@ const nextConfig = {
 				destination: "/docs/introduction",
 				permanent: false,
 			},
-			// Legacy query string based redirects
 			{
 				source: "/products",
-				has: [{ type: "query", key: "tab", value: "framework" }],
-				destination: "/products/framework",
-				permanent: true,
-			},
-			{
-				source: "/products",
-				has: [{ type: "query", key: "tab", value: "infrastructure" }],
-				destination: "/products/infrastructure",
+				has: [{ type: "query", key: "tab", value: "pricing" }],
+				destination: "/products/pricing",
 				permanent: true,
 			},
 			{

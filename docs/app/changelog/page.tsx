@@ -2,20 +2,12 @@ import Link from "next/link";
 import Footer from "@/components/landing/footer";
 import { HalftoneBackground } from "@/components/landing/halftone-bg";
 import { SignatureMark } from "@/components/landing/signature-mark";
+import type { GitHubRelease } from "@/lib/github-releases";
+import { fetchGitHubReleases } from "@/lib/github-releases";
 import { createMetadata } from "@/lib/metadata";
 import { ChangelogContent } from "./changelog-content";
 
 export const dynamic = "force-static";
-
-interface GitHubRelease {
-	id: number;
-	tag_name: string;
-	name: string;
-	body: string;
-	html_url: string;
-	prerelease: boolean;
-	published_at: string;
-}
 
 const GITHUB_USERNAME_REGEX =
 	/(?:^|[^\w.+-])@([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)(?![A-Za-z0-9-]|[./][A-Za-z])/g;
@@ -75,23 +67,7 @@ function getContent(content: string) {
 export default async function ChangelogPage() {
 	let releases: GitHubRelease[] = [];
 	try {
-		const res = await fetch(
-			"https://api.github.com/repos/ColbemLLC/Stale/releases/",
-			{
-				next: { revalidate: 3600 },
-				headers: {
-					Accept: "application/vnd.github.v3+json",
-					...(process.env.GITHUB_TOKEN && {
-						Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-					}),
-				},
-			},
-		);
-		if (res.ok) {
-			releases = await res.json();
-		} else {
-			console.error(`Changelog fetch failed: ${res.status}`);
-		}
+		releases = await fetchGitHubReleases();
 	} catch (e) {
 		console.error("Changelog fetch failed:", e);
 	}
@@ -166,7 +142,7 @@ export default async function ChangelogPage() {
 
 					<div className="flex items-center gap-3 pt-4">
 						<Link
-							href="https://github.com/better-auth/better-auth/releases"
+							href="https://github.com/ColbemLLC/Stale/releases"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center gap-1.5 text-[12px] text-foreground/70 dark:text-foreground/50 hover:text-foreground/80 font-mono uppercase tracking-wider transition-colors"

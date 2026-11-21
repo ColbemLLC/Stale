@@ -11,10 +11,11 @@ import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = createMetadata({
 	title: {
-		template: "%s | Better Auth",
-		default: "Better Auth",
+		template: "%s | Colbe",
+		default: "Colbe",
 	},
-	description: "The Most Comprehensive Authentication Framework",
+	description:
+		"Hang out, chat, and build communities with your friends and family on Colbe.",
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
