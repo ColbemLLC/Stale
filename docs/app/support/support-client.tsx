@@ -186,7 +186,7 @@ export function SupportPageClient() {
 								<span className="flex-1 h-px bg-foreground/15" />
 							</h2>
 
-							<div className="grid grid-cols-1 sm:grid-cols-3 gap-px overflow-hidden rounded-[15px] border border-border bg-border">
+							<div className="grid grid-cols-1 sm:grid-cols-3 gap-px overflow-hidden rounded-xl border border-border bg-border">
 								{quickLinks.map(({ Icon, title, desc, href }) => (
 									<Link
 										key={title}
@@ -250,7 +250,7 @@ export function SupportPageClient() {
 																<Input
 																	{...field}
 																	placeholder="Your name"
-																	className="rounded-[15px]"
+																	className="rounded-xl"
 																/>
 															</FormControl>
 															<FormMessage />
@@ -271,7 +271,7 @@ export function SupportPageClient() {
 																	{...field}
 																	type="email"
 																	placeholder="name@email.com"
-																	className="rounded-[15px]"
+																	className="rounded-xl"
 																/>
 															</FormControl>
 															<FormMessage />
@@ -292,11 +292,11 @@ export function SupportPageClient() {
 																onValueChange={field.onChange}
 															>
 																<FormControl>
-																	<SelectTrigger className="rounded-[15px]">
+																	<SelectTrigger className="rounded-xl">
 																		<SelectValue placeholder="Select" />
 																	</SelectTrigger>
 																</FormControl>
-																<SelectContent>
+																<SelectContent className="rounded-xl">
 																	{topics.map((topic) => (
 																		<SelectItem key={topic} value={topic}>
 																			{topic}
@@ -322,7 +322,7 @@ export function SupportPageClient() {
 																	{...field}
 																	rows={4}
 																	placeholder="Describe what happened or what you need..."
-																	className="min-h-[100px] rounded-[15px]"
+																	className="min-h-[100px] rounded-xl"
 																/>
 															</FormControl>
 															<FormMessage />
@@ -333,7 +333,7 @@ export function SupportPageClient() {
 												<Button
 													disabled={form.formState.isSubmitting}
 													type="submit"
-													className="w-full rounded-[15px] font-mono uppercase tracking-widest"
+													className="w-full rounded-xl font-mono uppercase tracking-widest"
 												>
 													{form.formState.isSubmitting
 														? "Sending..."
