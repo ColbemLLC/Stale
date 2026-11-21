@@ -401,7 +401,7 @@ export function StaggeredNavFiles() {
 		isPricingPage ||
 		isProductsPage ||
 		isResourcePage ||
-		isActive("/enterprise");
+		isActive("/support");
 	const isNarrowLeft = isDocs;
 	const leftPaneWidthClass = isNarrowLeft
 		? "w-[22vw] max-w-[300px]"
