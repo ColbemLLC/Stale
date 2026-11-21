@@ -2,11 +2,12 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
+import { ArrowUpRight, BookOpen, Bug, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import type * as z from "zod";
+import * as z from "zod";
 import Footer from "@/components/landing/footer";
 import { HalftoneBackground } from "@/components/landing/halftone-bg";
 import { SignatureMark } from "@/components/landing/signature-mark";
@@ -28,9 +29,46 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { contactSchema } from "@/lib/enterprise-contact";
 
-function EnterpriseHero() {
+const serif = "font-[family-name:var(--font-instrument-serif)]";
+
+const supportSchema = z.object({
+	fullName: z.string().min(1, "Enter your name"),
+	email: z.string().email("Enter a valid email"),
+	topic: z.string().min(1, "Select a topic"),
+	description: z.string().min(10, "Tell us a little more"),
+});
+
+const topics = [
+	"Account and sign-in",
+	"Bug report",
+	"Feature request",
+	"Safety and reporting",
+	"Other",
+] as const;
+
+const quickLinks = [
+	{
+		Icon: BookOpen,
+		title: "Docs",
+		desc: "Guides and references.",
+		href: "/docs",
+	},
+	{
+		Icon: ShieldCheck,
+		title: "Community guidelines",
+		desc: "What is and is not allowed.",
+		href: "/legal/guidelines",
+	},
+	{
+		Icon: Bug,
+		title: "Report a bug",
+		desc: "Choose Bug report in the form.",
+		href: "#contact",
+	},
+];
+
+function SupportHero() {
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 12 }}
@@ -40,37 +78,26 @@ function EnterpriseHero() {
 		>
 			<div className="space-y-6">
 				<div className="space-y-2">
-					<h1 className="text-2xl md:text-3xl xl:text-4xl text-neutral-800 dark:text-neutral-200 tracking-tight leading-tight">
-						Own your auth
+					<h1
+						className={`${serif} text-4xl md:text-5xl text-foreground tracking-tight leading-[1.05]`}
+					>
+						We are here
 						<br />
-						<span className="text-neutral-500 dark:text-neutral-400">
-							at scale.
-						</span>
+						<span className="italic text-foreground/60">to help.</span>
 					</h1>
-					<p className="text-sm text-foreground/70 dark:text-foreground/50 leading-relaxed max-w-[260px]">
-						Keep your users on your own infrastructure with enterprise-grade
-						auth, SSO, RBAC, and dedicated support.
+					<p className="text-sm text-muted-foreground leading-relaxed max-w-[260px]">
+						Questions, bugs, or feedback? Send us a message and we will get back
+						to you.
 					</p>
 				</div>
 
-				{/* CTA */}
 				<div className="flex items-center gap-3 pt-1">
 					<Link
-						href="/pricing"
+						href="/docs"
 						className="inline-flex items-center gap-1.5 text-[12px] text-foreground/60 hover:text-foreground/80 font-mono uppercase tracking-wider transition-colors"
 					>
-						View Pricing
-						<svg
-							className="h-2.5 w-2.5 opacity-50"
-							viewBox="0 0 10 10"
-							fill="none"
-						>
-							<path
-								d="M1 9L9 1M9 1H3M9 1V7"
-								stroke="currentColor"
-								strokeWidth="1.2"
-							/>
-						</svg>
+						Read the docs
+						<ArrowUpRight className="size-2.5 opacity-60" />
 					</Link>
 				</div>
 			</div>
@@ -78,22 +105,21 @@ function EnterpriseHero() {
 	);
 }
 
-export function EnterprisePageClient() {
+export function SupportPageClient() {
 	const hpRef = useRef<HTMLInputElement>(null);
-	const form = useForm<z.infer<typeof contactSchema>>({
-		resolver: zodResolver(contactSchema),
+	const form = useForm<z.infer<typeof supportSchema>>({
+		resolver: zodResolver(supportSchema),
 		defaultValues: {
 			fullName: "",
-			company: "",
 			email: "",
-			companySize: "",
+			topic: "",
 			description: "",
 		},
 	});
 
-	const onSubmit = async (data: z.infer<typeof contactSchema>) => {
+	const onSubmit = async (data: z.infer<typeof supportSchema>) => {
 		try {
-			const response = await fetch("/api/enterprise/contact", {
+			const response = await fetch("/api/support/contact", {
 				method: "POST",
 				body: JSON.stringify({
 					...data,
@@ -112,7 +138,7 @@ export function EnterprisePageClient() {
 				toast.error(message || "Something went wrong. Please try again.");
 				return;
 			}
-			toast.success("Thank you for your interest! We'll be in touch soon.");
+			toast.success("Thank you! We will get back to you soon.");
 			form.reset();
 		} catch {
 			toast.error("Something went wrong. Please try again.");
@@ -123,12 +149,12 @@ export function EnterprisePageClient() {
 		<div className="relative min-h-dvh pt-14 lg:pt-0">
 			<div className="relative text-foreground">
 				<div className="flex flex-col lg:flex-row">
-					{/* Left side — Enterprise hero */}
+					{/* Left side — Support hero */}
 					<div className="hidden lg:block relative w-full shrink-0 lg:w-[40%] lg:h-dvh border-b lg:border-b-0 lg:border-r border-foreground/6 overflow-clip px-5 sm:px-6 lg:px-10 lg:sticky lg:top-0">
 						<div className="hidden lg:block">
 							<HalftoneBackground />
 						</div>
-						<EnterpriseHero />
+						<SupportHero />
 						<div className="absolute left-10 right-6 bottom-4 z-[3]">
 							<SignatureMark />
 						</div>
@@ -141,22 +167,48 @@ export function EnterprisePageClient() {
 							<div className="lg:hidden relative border-b border-foreground/6 overflow-hidden -mx-5 sm:-mx-6 px-5 sm:px-6 mb-5">
 								<HalftoneBackground />
 								<div className="relative space-y-2 py-16">
-									<h1 className="text-2xl md:text-3xl xl:text-4xl text-neutral-800 dark:text-neutral-200 tracking-tight leading-tight">
-										Own your auth
+									<h1
+										className={`${serif} text-4xl text-foreground tracking-tight leading-[1.05]`}
+									>
+										We are here
 										<br />
-										<span className="text-neutral-500 dark:text-neutral-400">
-											at scale.
-										</span>
+										<span className="italic text-foreground/60">to help.</span>
 									</h1>
-									<p className="text-sm text-foreground/70 dark:text-foreground/50 leading-relaxed">
-										Keep your users on your own infrastructure with
-										enterprise-grade auth, SSO, RBAC, and dedicated support.
+									<p className="text-sm text-muted-foreground leading-relaxed">
+										Questions, bugs, or feedback? Send us a message and we will
+										get back to you.
 									</p>
 								</div>
 							</div>
 
-							<h2 className="flex items-center gap-3 text-sm sm:text-[15px] font-mono text-neutral-900 dark:text-neutral-100 mb-4 sm:mb-5">
-								GET IN TOUCH
+							<h2 className="flex items-center gap-3 text-sm sm:text-[15px] font-mono text-foreground mb-4 sm:mb-5">
+								QUICK HELP
+								<span className="flex-1 h-px bg-foreground/15" />
+							</h2>
+
+							<div className="grid grid-cols-1 sm:grid-cols-3 gap-px overflow-hidden rounded-[15px] border border-border bg-border">
+								{quickLinks.map(({ Icon, title, desc, href }) => (
+									<Link
+										key={title}
+										href={href}
+										className="group/card bg-background p-4 transition-colors hover:bg-muted/40"
+									>
+										<Icon className="mb-3 size-4 text-muted-foreground transition-colors group-hover/card:text-foreground" />
+										<div className="text-[13px] font-medium text-foreground/90">
+											{title}
+										</div>
+										<div className="text-[13px] leading-relaxed text-muted-foreground">
+											{desc}
+										</div>
+									</Link>
+								))}
+							</div>
+
+							<h2
+								id="contact"
+								className="flex items-center gap-3 text-sm sm:text-[15px] font-mono text-foreground mb-4 sm:mb-5"
+							>
+								CONTACT SUPPORT
 								<span className="flex-1 h-px bg-foreground/15" />
 							</h2>
 
@@ -166,7 +218,7 @@ export function EnterprisePageClient() {
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.3, delay: 0.05 }}
 							>
-								<div className="relative overflow-hidden max-w-xl lg:mt-8">
+								<div className="relative overflow-hidden max-w-xl">
 									<div className="py-4 sm:py-5">
 										<Form {...form}>
 											<form
@@ -192,26 +244,14 @@ export function EnterprisePageClient() {
 													render={({ field }) => (
 														<FormItem>
 															<FormLabel className="text-xs tracking-wider text-foreground/50 font-mono">
-																Full Name
+																Name
 															</FormLabel>
 															<FormControl>
-																<Input {...field} placeholder="Your name" />
-															</FormControl>
-															<FormMessage />
-														</FormItem>
-													)}
-												/>
-
-												<FormField
-													control={form.control}
-													name="company"
-													render={({ field }) => (
-														<FormItem>
-															<FormLabel className="text-xs tracking-wider text-foreground/50 font-mono">
-																Company
-															</FormLabel>
-															<FormControl>
-																<Input {...field} placeholder="Company name" />
+																<Input
+																	{...field}
+																	placeholder="Your name"
+																	className="rounded-[15px]"
+																/>
 															</FormControl>
 															<FormMessage />
 														</FormItem>
@@ -224,13 +264,14 @@ export function EnterprisePageClient() {
 													render={({ field }) => (
 														<FormItem>
 															<FormLabel className="text-xs tracking-wider text-foreground/50 font-mono">
-																Company Email
+																Email
 															</FormLabel>
 															<FormControl>
 																<Input
 																	{...field}
 																	type="email"
-																	placeholder="name@company.com"
+																	placeholder="name@email.com"
+																	className="rounded-[15px]"
 																/>
 															</FormControl>
 															<FormMessage />
@@ -240,29 +281,27 @@ export function EnterprisePageClient() {
 
 												<FormField
 													control={form.control}
-													name="companySize"
+													name="topic"
 													render={({ field }) => (
 														<FormItem>
 															<FormLabel className="text-xs tracking-wider text-foreground/50 font-mono">
-																Company Size
+																Topic
 															</FormLabel>
 															<Select
 																value={field.value}
 																onValueChange={field.onChange}
 															>
 																<FormControl>
-																	<SelectTrigger>
+																	<SelectTrigger className="rounded-[15px]">
 																		<SelectValue placeholder="Select" />
 																	</SelectTrigger>
 																</FormControl>
 																<SelectContent>
-																	<SelectItem value="1-10">1-10</SelectItem>
-																	<SelectItem value="11-50">11-50</SelectItem>
-																	<SelectItem value="51-200">51-200</SelectItem>
-																	<SelectItem value="201-500">
-																		201-500
-																	</SelectItem>
-																	<SelectItem value="501+">501+</SelectItem>
+																	{topics.map((topic) => (
+																		<SelectItem key={topic} value={topic}>
+																			{topic}
+																		</SelectItem>
+																	))}
 																</SelectContent>
 															</Select>
 															<FormMessage />
@@ -276,14 +315,14 @@ export function EnterprisePageClient() {
 													render={({ field }) => (
 														<FormItem>
 															<FormLabel className="text-xs tracking-wider text-foreground/50 font-mono">
-																What do you need help with?
+																How can we help?
 															</FormLabel>
 															<FormControl>
 																<Textarea
 																	{...field}
 																	rows={4}
-																	placeholder="Tell us about your project and requirements..."
-																	className="min-h-[100px]"
+																	placeholder="Describe what happened or what you need..."
+																	className="min-h-[100px] rounded-[15px]"
 																/>
 															</FormControl>
 															<FormMessage />
@@ -294,9 +333,11 @@ export function EnterprisePageClient() {
 												<Button
 													disabled={form.formState.isSubmitting}
 													type="submit"
-													className="w-full font-mono uppercase tracking-widest"
+													className="w-full rounded-[15px] font-mono uppercase tracking-widest"
 												>
-													{form.formState.isSubmitting ? "Sending..." : "Send"}
+													{form.formState.isSubmitting
+														? "Sending..."
+														: "Send message"}
 												</Button>
 											</form>
 										</Form>

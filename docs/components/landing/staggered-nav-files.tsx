@@ -305,7 +305,7 @@ const mobileMenuSections: MobileMenuSection[] = [
 		})),
 	},
 	{ name: "resources", children: resourceFiles },
-	{ name: "enterprise", href: "/enterprise" },
+	{ name: "enterprise", href: "/support" },
 ];
 
 function closeOnBlurOutside(close: () => void) {
@@ -694,21 +694,21 @@ export function StaggeredNavFiles() {
 						className="flex-1"
 					>
 						<Link
-							href="/enterprise"
+							href="/support"
 							className={`group/tab relative flex items-center justify-center gap-1.5 px-2 xl:px-4 py-3 h-full border-r ${tabDividerClass} transition-colors duration-150 ${
-								isActive("/enterprise")
+								isActive("/support")
 									? `bg-background border-b-2 ${activeTabBorderClass}`
 									: "bg-transparent hover:bg-foreground/[0.03]"
 							}`}
 						>
 							<span
 								className={`font-mono text-xs uppercase tracking-wider transition-colors duration-150 whitespace-nowrap ${
-									isActive("/enterprise")
+									isActive("/support")
 										? "text-foreground"
 										: "text-foreground/65 dark:text-foreground/50 group-hover/tab:text-foreground/75"
 								}`}
 							>
-								enterprise
+								support
 							</span>
 						</Link>
 					</motion.div>
