@@ -14,8 +14,8 @@ const legalPages = [
 		href: "/legal/terms",
 	},
 	{
-		name: "Data Processing Addendum",
-		href: "/legal/dpa",
+		name: "Community Guidelines",
+		href: "/legal/guidelines",
 	},
 ];
 

@@ -4,15 +4,15 @@ import { blogs } from "./source";
 
 export function getRSS() {
 	const feed = new Feed({
-		title: "Better Auth Blog",
-		description: "Latest updates, articles, and insights about Better Auth",
-		generator: "better-auth",
+		title: "Colbe Blog",
+		description: "Latest updates, articles, and insights about Colbe",
+		generator: "colbe",
 		id: `${baseUrl}blog`,
 		link: `${baseUrl}blog`,
 		language: "en",
 		image: `${baseUrl}og.png`,
 		favicon: `${baseUrl}favicon/favicon-32x32.png`,
-		copyright: `All rights reserved ${new Date().getFullYear()}, Better Auth Inc.`,
+		copyright: `All rights reserved ${new Date().getFullYear()}, ColbemLLC`,
 	});
 
 	for (const page of blogs.getPages().sort((a, b) => {

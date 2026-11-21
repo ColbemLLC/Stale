@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { History, Palette, PencilLine, Scale, Search } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -27,6 +28,21 @@ interface NavFileItem {
 	external?: boolean;
 }
 
+const Wordmark = ({ className }: { className?: string }) => (
+	<span className={cn("flex items-center gap-2", className)}>
+		<Image
+			src="https://github.com/ColbemLLC.png"
+			alt="Colbe"
+			width={24}
+			height={24}
+			className="size-6 rounded-[15px]"
+		/>
+		<span className="font-[family-name:var(--font-instrument-serif)] text-2xl leading-none">
+			Colbe
+		</span>
+	</span>
+);
+
 const navFiles: NavFileItem[] = [
 	{ name: "readme", href: "/" },
 	{ name: "docs", href: "/docs" },
@@ -44,21 +60,6 @@ interface ProductItem {
 	BgPattern?: React.FC<{ className?: string }>;
 	bgPatternClassName?: string;
 }
-
-const FrameworkLogoIcon: React.FC<{ className?: string }> = ({ className }) => (
-	<svg
-		viewBox="0 0 30 45"
-		fill="currentColor"
-		className={`${className ?? ""} rotate-12`}
-		aria-hidden="true"
-	>
-		<path
-			fillRule="evenodd"
-			clipRule="evenodd"
-			d="M0 0H15V15H30V30H15V45H0V30V15V0Z"
-		/>
-	</svg>
-);
 
 const InfraLogoIcon: React.FC<{ className?: string }> = ({ className }) => (
 	<svg
@@ -231,22 +232,9 @@ const VerticalLinesPattern: React.FC<{ className?: string }> = ({
 
 const products: ProductItem[] = [
 	{
-		title: "Framework",
-		tagline: "Open source",
-		description:
-			"The TypeScript auth library. Plugins, adapters, and 20+ social providers.",
-		href: "/docs/introduction",
-		activatesTab: false,
-		Icon: FrameworkLogoIcon,
-		Pattern: VerticalLinesPattern,
-		patternClassName:
-			"absolute inset-0 w-full h-full text-primary/10 pointer-events-none [mask-image:linear-gradient(to_left,black_0%,transparent_40%)]",
-	},
-	{
-		title: "Infrastructure",
-		tagline: "Hosted platform",
-		description:
-			"Dashboard, audit logs, security detection, SSO, and abuse protection.",
+		title: "Subscription",
+		tagline: "Payments plans for Colbe",
+		description: "A bundle of subscriptions and payment plans for Colbe",
 		href: "/pricing",
 		activatesTab: true,
 		Icon: InfraLogoIcon,
@@ -445,9 +433,7 @@ export function StaggeredNavFiles() {
 						className="flex h-full items-center gap-1 px-4 py-3 transition-colors duration-150"
 					>
 						<div className="flex flex-col gap-2 w-full">
-							<LogoContextMenu
-								logo={<Icons.betterAuthWordmark className="w-35 h-auto" />}
-							/>
+							<LogoContextMenu logo={<Wordmark className="w-35 h-auto" />} />
 						</div>
 					</Link>
 				</motion.div>
@@ -463,7 +449,7 @@ export function StaggeredNavFiles() {
 						href="/"
 						className="flex h-full items-center gap-1 px-4 transition-colors duration-150"
 					>
-						<Icons.betterAuthWordmark className="w-35 h-auto" />
+						<Wordmark className="w-35 h-auto" />
 					</Link>
 					<div className="flex items-center gap-1 pr-2">
 						{isDocs && (
@@ -546,9 +532,7 @@ export function StaggeredNavFiles() {
 							href="/"
 							className={`flex h-full items-center gap-1 shrink-0 px-4 lg:px-7 py-3 border-r ${tabDividerClass} transition-colors duration-150`}
 						>
-							<LogoContextMenu
-								logo={<Icons.betterAuthWordmark className="w-35 h-auto" />}
-							/>
+							<LogoContextMenu logo={<Wordmark className="w-35 h-auto" />} />
 						</Link>
 					)}
 					{/* File tabs */}
@@ -946,11 +930,11 @@ export function StaggeredNavFiles() {
 						className="flex items-stretch shrink-0"
 					>
 						<a
-							href="https://dash.better-auth.com/sign-in"
+							href="/login"
 							className="flex items-center cursor-pointer gap-1.5 px-5 py-3 bg-foreground text-background hover:opacity-90 transition-colors duration-150"
 						>
 							<span className="font-mono text-xs uppercase tracking-wider">
-								sign-in
+								login
 							</span>
 							<svg
 								className="h-2.5 w-2.5 opacity-50"
@@ -1083,11 +1067,11 @@ export function StaggeredNavFiles() {
 
 							<div className="shrink-0 border-t border-foreground/[0.06] bg-background px-5 py-4">
 								<a
-									href="https://dash.better-auth.com/sign-in"
+									href="/login"
 									onClick={() => setMobileNavigationView("closed")}
 									className="flex items-center justify-center gap-1.5 w-full py-3 bg-foreground text-background font-mono text-sm uppercase tracking-wider transition-opacity hover:opacity-90"
 								>
-									sign-in
+									login
 									<svg
 										className="h-2.5 w-2.5 opacity-50"
 										viewBox="0 0 10 10"

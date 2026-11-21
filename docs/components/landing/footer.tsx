@@ -34,7 +34,7 @@ export default function Footer() {
 
 				<div className="flex items-center justify-between w-full sm:w-auto sm:gap-4 shrink-0">
 					<span className="text-[10px] text-foreground/50 font-mono">
-						© {new Date().getFullYear()} Better Auth Inc.
+						© {new Date().getFullYear()} ColbemLLC.
 					</span>
 					<div className="flex items-center gap-3 sm:gap-4">
 						<span className="text-foreground/10 select-none hidden sm:inline">
@@ -48,7 +48,7 @@ export default function Footer() {
 							<Icons.XIcon className="h-3.5 w-3.5" />
 						</Link>
 						<Link
-							href="https://github.com/better-auth"
+							href="https://github.com/ColbemLLC"
 							aria-label="GitHub"
 							className="text-foreground/50 hover:text-foreground/80 transition-colors"
 						>

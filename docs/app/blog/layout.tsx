@@ -2,28 +2,28 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import type { Metadata } from "next";
 import { createMetadata } from "@/lib/metadata";
 
-const description = "Latest updates, articles, and insights about Better Auth";
+const description = "Latest updates, articles, and insights about Colbe";
 
 export const metadata: Metadata = createMetadata({
 	title: "Blog",
 	description,
 	openGraph: {
 		url: "/blog",
-		title: "Blog - Better Auth",
+		title: "Blog - Colbe",
 		description,
-		images: ["/api/og-blog?title=Better%20Auth%20Blog"],
+		images: ["/api/og-blog?title=Colbe%20Blog"],
 	},
 	twitter: {
-		images: ["/api/og-blog?title=Better%20Auth%20Blog"],
-		title: "Blog - Better Auth",
+		images: ["/api/og-blog?title=Colbe%20Blog"],
+		title: "Blog - Colbe",
 		description,
 	},
 	alternates: {
 		types: {
 			"application/rss+xml": [
 				{
-					title: "Better Auth Blog",
-					url: "https://better-auth.com/blog/rss.xml",
+					title: "Colbe - Blog",
+					url: "https://colbe.cc/blog/rss.xml",
 				},
 			],
 		},

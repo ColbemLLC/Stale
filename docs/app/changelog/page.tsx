@@ -76,7 +76,7 @@ export default async function ChangelogPage() {
 	let releases: GitHubRelease[] = [];
 	try {
 		const res = await fetch(
-			"https://api.github.com/repos/better-auth/better-auth/releases",
+			"https://api.github.com/repos/ColbemLLC/Stale/releases/",
 			{
 				next: { revalidate: 3600 },
 				headers: {
@@ -149,7 +149,7 @@ export default async function ChangelogPage() {
 							All changes, fixes, and updates
 						</h1>
 						<p className="text-sm text-foreground/70 dark:text-foreground/50 leading-relaxed max-w-[240px]">
-							Every release shipped to Better Auth, straight from GitHub.
+							Every release shipped to Colbe, straight from GitHub.
 						</p>
 					</div>
 
@@ -213,7 +213,7 @@ export default async function ChangelogPage() {
 							All changes, fixes, and updates
 						</h1>
 						<p className="text-sm text-foreground/70 dark:text-foreground/50 leading-relaxed">
-							Every release shipped to Better Auth, straight from GitHub.
+							Every release shipped to Colbe, straight from GitHub.
 						</p>
 					</div>
 				</div>
@@ -237,5 +237,5 @@ export default async function ChangelogPage() {
 
 export const metadata = createMetadata({
 	title: "Changelog",
-	description: "Latest changes, fixes, and updates to Better Auth",
+	description: "Latest changes, fixes, and updates to Colbe",
 });

@@ -2,7 +2,7 @@
 import type { HighlightOptions } from "fumadocs-core/highlight";
 import { useShiki } from "fumadocs-core/highlight/client";
 import type { ComponentProps, FC } from "react";
-import { createContext, Suspense, use } from "react";
+import { createContext, Suspense, use, useEffect, useState } from "react";
 import type { CodeBlockProps } from "@/components/ui/code-block";
 import { CodeBlock, Pre } from "@/components/ui/code-block";
 import { cn } from "@/lib/utils";
@@ -59,6 +59,9 @@ export function DynamicCodeBlock({
 	wrapInSuspense = true,
 	allowCopy = true,
 }: DynamicCodeblockProps) {
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => setMounted(true), []);
+
 	const shikiOptions = {
 		lang,
 		...options,
@@ -67,9 +70,13 @@ export function DynamicCodeBlock({
 			...options?.components,
 		},
 	} satisfies HighlightOptions;
-	let children = <Internal code={code} options={shikiOptions} />;
+	let children = mounted ? (
+		<Internal code={code} options={shikiOptions} />
+	) : (
+		<Placeholder code={code} components={shikiOptions.components} />
+	);
 
-	if (wrapInSuspense)
+	if (wrapInSuspense && mounted)
 		children = (
 			<Suspense
 				fallback={
