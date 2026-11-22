@@ -171,7 +171,7 @@ function CommunityHero({ stats }: { stats: CommunityStats }) {
 				{/* Details list */}
 				<div className="border-t border-foreground/10 pt-4 space-y-0">
 					{[
-						{ label: "Platform", value: "Guild-based" },
+						{ label: "Platform", value: "Community-based" },
 						{ label: "Repository", value: "Stale" },
 					].map((item, i) => (
 						<motion.div

@@ -13,7 +13,7 @@
 
 ## Colbe
 
-Colbe is a guild-based community platform. It gives groups of people a place to talk, organize, and build something that feels like theirs, with channels, direct messages, and announcements in one place.
+Colbe is a community-based platform. It gives groups of people a place to talk, organize, and build something that feels like theirs, with channels, direct messages, and announcements in one place.
 
 ### Features
 
@@ -22,13 +22,6 @@ Colbe is a guild-based community platform. It gives groups of people a place to 
 - **Direct messages**: talk one-on-one, away from the main channels
 - **Community page**: owners and admins can post announcements
 - **Quick start**: register with just an email, then finish setup in onboarding
-
-### What is next
-
-- Finishing the chat interface
-- Public APIs
-- A developer hub with in-browser coding
-- A native Windows app, plus a web PWA for older hardware
 
 ## Contribution
 
