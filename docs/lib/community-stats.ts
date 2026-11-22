@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
-import staticContributors from "./contributors-data.json";
+
+const REPO = "ColbemLLC/Stale";
 
 export interface CommunityStats {
 	npmDownloads: number;
@@ -15,59 +16,6 @@ export interface ContributorInfo {
 	html_url: string;
 }
 
-export function getContributors(): ContributorInfo[] {
-	return staticContributors as ContributorInfo[];
-}
-
-const staticContributorsCount = staticContributors.length;
-
-// Fetch NPM download stats for the last week
-async function fetchNpmDownloads(): Promise<number> {
-	try {
-		const response = await fetch(
-			"https://api.npmjs.org/downloads/point/last-week/better-auth",
-			{ next: { revalidate: 3600 } }, // Cache for 1 hour
-		);
-
-		if (!response.ok) {
-			console.error("Failed to fetch NPM downloads:", response.status);
-			return 2_000_000; // Fallback value
-		}
-
-		const data = await response.json();
-		return data.downloads || 2_000_000;
-	} catch (error) {
-		console.error("Error fetching NPM downloads:", error);
-		return 2_000_000; // Fallback value
-	}
-}
-
-// Fetch NPM weekly download history (last 6 months, aggregated by week)
-async function fetchNpmWeeklyHistory(): Promise<number[]> {
-	try {
-		const end = new Date();
-		const start = new Date();
-		start.setMonth(start.getMonth() - 6);
-		const fmt = (d: Date) => d.toISOString().slice(0, 10);
-		const response = await fetch(
-			`https://api.npmjs.org/downloads/range/${fmt(start)}:${fmt(end)}/better-auth`,
-			{ next: { revalidate: 3600 } },
-		);
-		if (!response.ok) return [];
-		const data = await response.json();
-		const downloads: { day: string; downloads: number }[] = data.downloads;
-		// Aggregate daily into weekly buckets
-		const weeks: number[] = [];
-		for (let i = 0; i < downloads.length; i += 7) {
-			const week = downloads.slice(i, i + 7);
-			weeks.push(week.reduce((sum, d) => sum + d.downloads, 0));
-		}
-		return weeks;
-	} catch {
-		return [];
-	}
-}
-
 // Shared headers for GitHub API requests
 const githubHeaders = {
 	Accept: "application/vnd.github.v3+json",
@@ -76,42 +24,64 @@ const githubHeaders = {
 	}),
 };
 
-// Fetch GitHub repository stats — repo info and contributors in parallel
+// Fetch the contributors list from the repo
+async function fetchContributors(): Promise<ContributorInfo[]> {
+	try {
+		const response = await fetch(
+			`https://api.github.com/repos/${REPO}/contributors?per_page=100`,
+			{ next: { revalidate: 3600 }, headers: githubHeaders },
+		);
+		if (!response.ok) {
+			console.error("Failed to fetch contributors:", response.status);
+			return [];
+		}
+		const data = (await response.json()) as ContributorInfo[];
+		return data.map(({ login, avatar_url, html_url }) => ({
+			login,
+			avatar_url,
+			html_url,
+		}));
+	} catch (error) {
+		console.error("Error fetching contributors:", error);
+		return [];
+	}
+}
+
+// Fetch GitHub repository stats: repo info and contributor count in parallel
 async function fetchGitHubStats(): Promise<{
 	stars: number;
 	contributors: number;
 }> {
 	try {
 		const [repoResponse, contributorsResponse] = await Promise.all([
-			fetch("https://api.github.com/repos/better-auth/better-auth", {
+			fetch(`https://api.github.com/repos/${REPO}`, {
 				next: { revalidate: 3600 },
 				headers: githubHeaders,
 			}),
 			fetch(
-				"https://api.github.com/repos/better-auth/better-auth/contributors?per_page=1&anon=true",
-				{
-					next: { revalidate: 3600 },
-					headers: githubHeaders,
-				},
+				`https://api.github.com/repos/${REPO}/contributors?per_page=1&anon=true`,
+				{ next: { revalidate: 3600 }, headers: githubHeaders },
 			),
 		]);
 
-		let stars = 26000;
+		let stars = 0;
 		if (repoResponse.ok) {
 			const data = await repoResponse.json();
-			stars = data.stargazers_count || 26000;
+			stars = data.stargazers_count ?? 0;
 		} else {
 			console.error("Failed to fetch GitHub repo stats:", repoResponse.status);
 		}
 
-		let contributorsCount = staticContributorsCount;
+		let contributors = 0;
 		if (contributorsResponse.ok) {
 			const linkHeader = contributorsResponse.headers.get("Link");
-			if (linkHeader) {
-				const match = linkHeader.match(/page=(\d+)>; rel="last"/);
-				if (match) {
-					contributorsCount = parseInt(match[1], 10);
-				}
+			const match = linkHeader?.match(/page=(\d+)>; rel="last"/);
+			if (match) {
+				contributors = parseInt(match[1], 10);
+			} else {
+				// No pagination: the response holds every contributor (0 or 1)
+				const list = await contributorsResponse.json();
+				contributors = Array.isArray(list) ? list.length : 0;
 			}
 		} else {
 			console.error(
@@ -120,28 +90,36 @@ async function fetchGitHubStats(): Promise<{
 			);
 		}
 
-		return { stars, contributors: contributorsCount };
+		return { stars, contributors };
 	} catch (error) {
 		console.error("Error fetching GitHub stats:", error);
-		return { stars: 26000, contributors: staticContributorsCount };
+		return { stars: 0, contributors: 0 };
 	}
 }
+
+// Cached contributors list
+export const getContributors = unstable_cache(
+	async (): Promise<ContributorInfo[]> => fetchContributors(),
+	["community-contributors"],
+	{
+		revalidate: 3600, // Revalidate every hour
+		tags: ["community-contributors"],
+	},
+);
 
 // Cached function to get all community stats
 export const getCommunityStats = unstable_cache(
 	async (): Promise<CommunityStats> => {
-		const [npmDownloads, npmWeeklyHistory, githubStats] = await Promise.all([
-			fetchNpmDownloads(),
-			fetchNpmWeeklyHistory(),
-			fetchGitHubStats(),
-		]);
+		const githubStats = await fetchGitHubStats();
 
 		return {
-			npmDownloads,
-			npmWeeklyHistory,
+			// Colbe has no npm package, so these stay empty
+			npmDownloads: 0,
+			npmWeeklyHistory: [],
 			githubStars: githubStats.stars,
 			contributors: githubStats.contributors,
-			discordMembers: 10000, // Discord API requires bot token, using static value
+			// No Discord member count source yet
+			discordMembers: 0,
 		};
 	},
 	["community-stats"],

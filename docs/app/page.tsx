@@ -6,7 +6,7 @@ import { SignatureMark } from "@/components/landing/signature-mark";
 import { getCommunityStats, getContributors } from "@/lib/community-stats";
 
 export default async function HomePage() {
-	const contributors = getContributors();
+	const contributors = await getContributors();
 	const communityStats = await getCommunityStats();
 
 	return (
