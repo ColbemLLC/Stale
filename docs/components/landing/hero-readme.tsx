@@ -251,7 +251,7 @@ function ReadmeFooter({ stats }: { stats: CommunityHeroStats }) {
 			{/* CTA */}
 			<div className="relative space-y-6">
 				<p className="text-center text-lg text-balance text-foreground/60 dark:text-foreground/50 tracking-tight">
-					Colbe is a community platform built by{"Colbem Inc"}
+					Colbe is a community platform built by {"Colbem Inc"}
 				</p>
 
 				<div className="flex items-center justify-center gap-2">
