@@ -5,7 +5,7 @@ import { ChevronLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { HalftoneBg } from "@/components/landing/halftone-bg";
+import { HalftoneBackground } from "@/components/landing/halftone-bg";
 import { authClient } from "@/lib/auth-client";
 
 const fade = (delay = 0) => ({
@@ -90,7 +90,7 @@ export default function RegisterClient() {
 		<section className="relative min-h-svh overflow-hidden bg-background lg:grid lg:grid-cols-2">
 			<aside className="relative hidden h-full flex-col overflow-hidden border-e border-border bg-card p-10 lg:flex">
 				<div aria-hidden className="absolute inset-0">
-					<HalftoneBg />
+					<HalftoneBackground />
 				</div>
 				<div
 					aria-hidden

@@ -18,6 +18,8 @@ lerna-debug.log*
 
 docs/.source/
 landing/.source/
+docs/auth.db
+docs/auth.db-*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 

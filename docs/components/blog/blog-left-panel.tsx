@@ -129,7 +129,7 @@ export function BlogLeftPanel({ postCount, post }: BlogLeftPanelProps) {
 					{/* Social & RSS */}
 					<div className="flex items-center gap-3 pt-2">
 						<a
-							href="https://github.com/better-auth/better-auth"
+							href="https://github.com/ColbemLLC/formation"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="flex items-center gap-1.5 text-foreground/30 hover:text-foreground/70 transition-colors"
