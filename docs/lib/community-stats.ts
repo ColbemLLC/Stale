@@ -1,6 +1,6 @@
 import { unstable_cache } from "next/cache";
 
-const REPO = "ColbemLLC/Stale";
+const REPO = "ColbemLLC/formation";
 
 export interface CommunityStats {
 	npmDownloads: number;

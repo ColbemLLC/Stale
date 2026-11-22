@@ -9,7 +9,7 @@ export interface GitHubRelease {
 }
 
 const GITHUB_RELEASES_URL =
-	"https://api.github.com/repos/ColbemLLC/Stale/releases";
+	"https://api.github.com/repos/ColbemLLC/formation/releases";
 
 export async function fetchGitHubReleases(): Promise<GitHubRelease[]> {
 	const response = await fetch(GITHUB_RELEASES_URL, {

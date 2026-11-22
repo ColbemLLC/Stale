@@ -15,7 +15,7 @@ describe("fetchGitHubReleases", () => {
 
 		await expect(fetchGitHubReleases()).resolves.toEqual([]);
 		expect(fetchMock).toHaveBeenCalledWith(
-			"https://api.github.com/repos/ColbemLLC/Stale/releases",
+			"https://api.github.com/repos/ColbemLLC/formation/releases",
 			expect.objectContaining({ next: { revalidate: 3600 } }),
 		);
 	});

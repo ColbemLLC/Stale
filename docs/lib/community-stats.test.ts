@@ -42,7 +42,12 @@ describe("getCommunityStats", () => {
 		await expect(getCommunityStats()).resolves.toMatchObject({
 			githubStars: 1,
 		});
-		expect(requests).toContain("https://api.github.com/repos/ColbemLLC/Stale");
-		expect(cacheKeys).toContainEqual(["community-stats", "ColbemLLC/Stale"]);
+		expect(requests).toContain(
+			"https://api.github.com/repos/ColbemLLC/formation",
+		);
+		expect(cacheKeys).toContainEqual([
+			"community-stats",
+			"ColbemLLC/formation",
+		]);
 	});
 });

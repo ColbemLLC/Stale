@@ -271,7 +271,7 @@ function ReadmeFooter({ stats }: { stats: CommunityHeroStats }) {
 					)}
 					{stats.githubStars > 0 && (
 						<a
-							href="https://github.com/better-auth/better-auth"
+							href="https://github.com/ColbemLLC/formation"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
