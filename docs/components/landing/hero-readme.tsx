@@ -251,7 +251,7 @@ function ReadmeFooter({ stats }: { stats: CommunityHeroStats }) {
 			{/* CTA */}
 			<div className="relative space-y-6">
 				<p className="text-center text-lg text-balance text-foreground/60 dark:text-foreground/50 tracking-tight">
-					Roll your own auth with confidence in minutes.
+					Colbe is a community platform built by{"Colbem Inc"}
 				</p>
 
 				<div className="flex items-center justify-center gap-2">
@@ -306,7 +306,7 @@ function ReadmeFooter({ stats }: { stats: CommunityHeroStats }) {
 						Get Started
 					</Link>
 					<Link
-						href="https://dash.better-auth.com/sign-in"
+						href="/login"
 						className="relative inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 text-neutral-600 dark:text-neutral-300 text-xs sm:text-sm font-medium transition-colors group"
 					>
 						<span
@@ -328,7 +328,7 @@ function ReadmeFooter({ stats }: { stats: CommunityHeroStats }) {
 						<span className="absolute -bottom-[6px] -right-[6px] font-mono text-[8px] text-foreground/40 dark:text-foreground/50 leading-none select-none translate-x-1/2 translate-y-1/2">
 							+
 						</span>
-						<span className="relative">Sign In </span>
+						<span className="relative">Login </span>
 					</Link>
 				</div>
 			</div>
@@ -405,12 +405,12 @@ export function HeroReadMe({
 						</h1>
 
 						<p className="text-sm sm:text-[15px] text-foreground/80 mb-6 sm:mb-8 leading-relaxed">
-							Colbe is a guild-based community platform. Bring your people
-							together with{" "}
+							Colbe is a community-based platform. Chat with your friends and
+							colleagues together.{" "}
 							<span className="font-medium text-foreground/90 dark:text-foreground/80">
-								channels, direct messages, and announcements
+								Secure you chats, build a community
 							</span>{" "}
-							in one place.
+							All in one place.
 						</p>
 
 						<div className="flex items-center gap-4 my-4">
