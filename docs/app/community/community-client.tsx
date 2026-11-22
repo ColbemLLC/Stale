@@ -24,53 +24,6 @@ const GitHubIcon = ({ className }: { className?: string }) => (
 	</svg>
 );
 
-const DiscordIcon = ({ className }: { className?: string }) => (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="20"
-		height="20"
-		viewBox="0 0 24 24"
-		className={className}
-	>
-		<path
-			fill="currentColor"
-			d="M19.303 5.337A17.3 17.3 0 0 0 14.963 4c-.191.329-.403.775-.552 1.125a16.6 16.6 0 0 0-4.808 0C9.454 4.775 9.23 4.329 9.05 4a17 17 0 0 0-4.342 1.337C1.961 9.391 1.218 13.35 1.59 17.255a17.7 17.7 0 0 0 5.318 2.664a13 13 0 0 0 1.136-1.836c-.627-.234-1.22-.52-1.794-.86c.149-.106.297-.223.435-.34c3.46 1.582 7.207 1.582 10.624 0c.149.117.287.234.435.34c-.573.34-1.167.626-1.793.86a13 13 0 0 0 1.135 1.836a17.6 17.6 0 0 0 5.318-2.664c.457-4.52-.722-8.448-3.1-11.918M8.52 14.846c-1.04 0-1.889-.945-1.889-2.101s.828-2.102 1.89-2.102c1.05 0 1.91.945 1.888 2.102c0 1.156-.838 2.1-1.889 2.1m6.974 0c-1.04 0-1.89-.945-1.89-2.101s.828-2.102 1.89-2.102c1.05 0 1.91.945 1.889 2.102c0 1.156-.828 2.1-1.89 2.1"
-		/>
-	</svg>
-);
-
-const RedditIcon = ({ className }: { className?: string }) => (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="20"
-		height="20"
-		viewBox="0 0 256 256"
-		className={className}
-	>
-		<circle cx="128" cy="128" r="128" fill="currentColor" />
-		<path
-			fill="currentColor"
-			className="text-background"
-			d="M213.15 129.22c0-10.376-8.391-18.617-18.617-18.617a18.74 18.74 0 0 0-12.97 5.189c-12.818-9.157-30.368-15.107-49.9-15.87l8.544-39.981l27.773 5.95c.307 7.02 6.104 12.667 13.278 12.667c7.324 0 13.275-5.95 13.275-13.278c0-7.324-5.95-13.275-13.275-13.275c-5.188 0-9.768 3.052-11.904 7.478l-30.976-6.562c-.916-.154-1.832 0-2.443.458c-.763.458-1.22 1.22-1.371 2.136l-9.464 44.558c-19.837.612-37.692 6.562-50.662 15.872a18.74 18.74 0 0 0-12.971-5.188c-10.377 0-18.617 8.391-18.617 18.617c0 7.629 4.577 14.037 10.988 16.939a33.6 33.6 0 0 0-.458 5.646c0 28.686 33.42 52.036 74.621 52.036c41.202 0 74.622-23.196 74.622-52.036a35 35 0 0 0-.458-5.646c6.408-2.902 10.985-9.464 10.985-17.093M85.272 142.495c0-7.324 5.95-13.275 13.278-13.275c7.324 0 13.275 5.95 13.275 13.275s-5.95 13.278-13.275 13.278c-7.327.15-13.278-5.953-13.278-13.278m74.317 35.251c-9.156 9.157-26.553 9.768-31.588 9.768c-5.188 0-22.584-.765-31.59-9.768c-1.371-1.373-1.371-3.51 0-4.883c1.374-1.371 3.51-1.371 4.884 0c5.8 5.8 18.008 7.782 26.706 7.782s21.058-1.983 26.704-7.782c1.374-1.371 3.51-1.371 4.884 0c1.22 1.373 1.22 3.51 0 4.883m-2.443-21.822c-7.325 0-13.275-5.95-13.275-13.275s5.95-13.275 13.275-13.275c7.327 0 13.277 5.95 13.277 13.275c0 7.17-5.95 13.275-13.277 13.275"
-		/>
-	</svg>
-);
-
-const XIcon = ({ className }: { className?: string }) => (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="18"
-		height="18"
-		viewBox="0 0 24 24"
-		className={className}
-	>
-		<path
-			fill="currentColor"
-			d="m17.687 3.063l-4.996 5.711l-4.32-5.711H2.112l7.477 9.776l-7.086 8.099h3.034l5.469-6.25l4.78 6.25h6.102l-7.794-10.304l6.625-7.571zm-1.064 16.06L5.654 4.782h1.803l10.846 14.34z"
-		/>
-	</svg>
-);
-
 const StarIcon = ({ className }: { className?: string }) => (
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -81,25 +34,6 @@ const StarIcon = ({ className }: { className?: string }) => (
 		className={className}
 	>
 		<path d="M12 2l3.09 6.26L22 9.27l-5 4.87l1.18 6.88L12 17.77l-6.18 3.25L7 14.14L2 9.27l6.91-1.01L12 2z" />
-	</svg>
-);
-
-const DownloadIcon = ({ className }: { className?: string }) => (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		width="16"
-		height="16"
-		viewBox="0 0 24 24"
-		fill="none"
-		stroke="currentColor"
-		strokeWidth="2"
-		strokeLinecap="round"
-		strokeLinejoin="round"
-		className={className}
-	>
-		<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-		<polyline points="7 10 12 15 17 10" />
-		<line x1="12" y1="15" x2="12" y2="3" />
 	</svg>
 );
 
@@ -171,36 +105,22 @@ function AnimatedCounter({
 // Community platforms
 const platforms = [
 	{
-		name: "Discord",
-		icon: DiscordIcon,
-		href: "https://discord.gg/better-auth",
-		cta: "Join Discord",
-		members: "10,000+",
-		label: "members",
-	},
-	{
 		name: "GitHub",
 		icon: GitHubIcon,
-		href: "https://github.com/better-auth/better-auth",
+		href: "https://github.com/ColbemLLC/Stale",
 		cta: "View on GitHub",
-		members: "Open Source",
+		members: "ColbemLLC/Stale",
 		label: "repository",
+		external: true,
 	},
 	{
-		name: "Reddit",
-		icon: RedditIcon,
-		href: "https://reddit.com/r/better_auth",
-		cta: "Join Subreddit",
-		members: "1.2K+",
-		label: "members",
-	},
-	{
-		name: "X (Twitter)",
-		icon: XIcon,
-		href: "https://x.com/better_auth",
-		cta: "Follow on X",
-		members: "@better_auth",
-		label: "handle",
+		name: "Colbe",
+		icon: UsersIcon,
+		href: "/login",
+		cta: "Open Colbe",
+		members: "colbe.cc",
+		label: "platform",
+		external: false,
 	},
 ];
 
@@ -224,23 +144,12 @@ function CommunityHero({ stats }: { stats: CommunityStats }) {
 						<span className="text-foreground/50">build together.</span>
 					</h1>
 					<p className="text-sm text-foreground/70 dark:text-foreground/50 leading-relaxed max-w-[260px]">
-						Connect with developers building with Better Auth.
+						Connect with the people building Colbe.
 					</p>
 				</div>
 
 				{/* Quick stats summary */}
 				<div className="flex items-stretch gap-0 border border-foreground/[0.08]">
-					<div className="flex-1 px-3 py-2.5 text-center border-r border-foreground/[0.08]">
-						<p className="text-[9px] font-mono uppercase tracking-widest text-foreground/50 dark:text-foreground/45 mb-1">
-							NPM
-						</p>
-						<p className="text-sm font-light text-foreground/80 tabular-nums">
-							{formatNumber(stats.npmDownloads)}
-							<span className="text-[9px] text-foreground/50 font-mono">
-								/week
-							</span>
-						</p>
-					</div>
 					<div className="flex-1 px-3 py-2.5 text-center border-r border-foreground/[0.08] bg-foreground/[0.03]">
 						<p className="text-[9px] font-mono uppercase tracking-widest text-foreground/50 dark:text-foreground/45 mb-1">
 							Stars
@@ -251,20 +160,19 @@ function CommunityHero({ stats }: { stats: CommunityStats }) {
 					</div>
 					<div className="flex-1 px-3 py-2.5 text-center">
 						<p className="text-[9px] font-mono uppercase tracking-widest text-foreground/50 dark:text-foreground/45 mb-1">
-							Discord
+							Contributors
 						</p>
 						<p className="text-sm font-light text-foreground/80 tabular-nums">
-							{formatNumber(stats.discordMembers)}
+							{formatNumber(stats.contributors)}
 						</p>
 					</div>
 				</div>
 
-				{/* Principles list */}
+				{/* Details list */}
 				<div className="border-t border-foreground/10 pt-4 space-y-0">
 					{[
-						{ label: "Framework", value: "Open source" },
-						{ label: "Contributors", value: `${stats.contributors}+` },
-						{ label: "License", value: "MIT" },
+						{ label: "Platform", value: "Guild-based" },
+						{ label: "Repository", value: "Stale" },
 					].map((item, i) => (
 						<motion.div
 							key={item.label}
@@ -373,8 +281,8 @@ function PlatformCard({
 				{/* CTA */}
 				<Link
 					href={platform.href}
-					target="_blank"
-					rel="noreferrer"
+					target={platform.external ? "_blank" : undefined}
+					rel={platform.external ? "noreferrer" : undefined}
 					className="block"
 				>
 					<div className="w-full py-2.5 text-center border flex items-center justify-center border-dashed border-foreground/20 text-foreground/70 hover:text-foreground/90 hover:border-foreground/30 hover:bg-foreground/5 transition-all cursor-pointer">
@@ -423,7 +331,7 @@ export function CommunityPageClient({ stats }: { stats: CommunityStats }) {
 										<span className="text-foreground/50">build together.</span>
 									</h1>
 									<p className="text-sm text-foreground/70 dark:text-foreground/50 leading-relaxed">
-										Connect with developers building with Better Auth.
+										Connect with the people building Colbe.
 									</p>
 								</div>
 							</div>
@@ -445,32 +353,18 @@ export function CommunityPageClient({ stats }: { stats: CommunityStats }) {
 
 								<div className="grid grid-cols-2 gap-0">
 									<StatCard
-										icon={DownloadIcon}
-										label="NPM Downloads"
-										value={stats.npmDownloads}
-										subtext="/ week"
-										index={0}
-									/>
-									<StatCard
 										icon={StarIcon}
 										label="GitHub Stars"
 										value={stats.githubStars}
 										subtext="stars"
-										index={1}
+										index={0}
 									/>
 									<StatCard
 										icon={UsersIcon}
 										label="Contributors"
 										value={stats.contributors}
 										subtext="people"
-										index={2}
-									/>
-									<StatCard
-										icon={DiscordIcon}
-										label="Discord Members"
-										value={stats.discordMembers}
-										subtext="members"
-										index={3}
+										index={1}
 									/>
 								</div>
 							</motion.div>
@@ -494,55 +388,6 @@ export function CommunityPageClient({ stats }: { stats: CommunityStats }) {
 										/>
 									))}
 								</div>
-							</motion.div>
-
-							{/* Merch */}
-							<motion.div
-								initial={false}
-								animate={{ opacity: 1, y: 0 }}
-								transition={{ duration: 0.3, delay: 0.35 }}
-							>
-								<Link
-									href="https://better-merch.dev"
-									target="_blank"
-									rel="noreferrer"
-									className="flex items-center justify-between w-full px-5 py-4 border border-dashed border-foreground/20 hover:border-foreground/30 hover:bg-foreground/5 transition-all group"
-								>
-									<div className="flex items-center gap-2.5">
-										<svg
-											width="16"
-											height="16"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											strokeWidth="1.5"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-											className="text-foreground/40 group-hover:text-foreground/60 transition-colors"
-										>
-											<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-											<line x1="3" y1="6" x2="21" y2="6" />
-											<path d="M16 10a4 4 0 0 1-8 0" />
-										</svg>
-										<span className="text-xs font-mono uppercase tracking-widest text-foreground/50 group-hover:text-foreground/70 transition-colors">
-											Shop our merch collection
-										</span>
-									</div>
-									<svg
-										width="14"
-										height="14"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										strokeWidth="1.5"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										className="text-foreground/30 group-hover:text-foreground/60 transition-colors"
-									>
-										<line x1="7" y1="17" x2="17" y2="7" />
-										<polyline points="7 7 17 7 17 17" />
-									</svg>
-								</Link>
 							</motion.div>
 						</div>
 						<div className="lg:hidden">

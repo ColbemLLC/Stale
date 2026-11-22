@@ -100,7 +100,7 @@ async function fetchGitHubStats(): Promise<{
 // Cached contributors list
 export const getContributors = unstable_cache(
 	async (): Promise<ContributorInfo[]> => fetchContributors(),
-	["community-contributors"],
+	["community-contributors", REPO],
 	{
 		revalidate: 3600, // Revalidate every hour
 		tags: ["community-contributors"],
@@ -122,7 +122,7 @@ export const getCommunityStats = unstable_cache(
 			discordMembers: 0,
 		};
 	},
-	["community-stats"],
+	["community-stats", REPO],
 	{
 		revalidate: 3600, // Revalidate every hour
 		tags: ["community-stats"],
