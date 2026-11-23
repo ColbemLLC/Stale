@@ -74,7 +74,10 @@ export default function RegisterClient() {
 	const [error, setError] = useState("");
 
 	const onSocial = (provider: "google" | "apple" | "github") =>
-		authClient.signIn.social({ provider, callbackURL: "/onboarding" });
+		authClient.signIn.social({
+			provider,
+			callbackURL: "app.colbe.cc/onboarding",
+		});
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();

@@ -72,7 +72,7 @@ export default function LoginClient() {
 	const [error, setError] = useState("");
 
 	const onSocial = (provider: "google" | "apple" | "github") =>
-		authClient.signIn.social({ provider, callbackURL: "/home" });
+		authClient.signIn.social({ provider, callbackURL: "app.colbe.cc" });
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
