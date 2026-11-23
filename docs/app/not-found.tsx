@@ -1,38 +1,81 @@
-"use client";
-
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
-export default function NotFoundPage() {
+const links = [
+	{
+		title: "Docs",
+		description: "Guides and references so you always know how things work.",
+		href: "/docs",
+	},
+	{
+		title: "Login",
+		description: "Sign in to your account and continue where you left off",
+		href: "/login",
+	},
+	{
+		title: "Registration",
+		description: "Create your account and fire away!",
+		href: "/register",
+	},
+];
+
+export default function NotFound() {
 	return (
-		<section className="bg-white font-serif min-h-screen flex items-center justify-center">
-			<div className="container mx-auto">
-				<div className="flex justify-center">
-					<div className="w-full sm:w-10/12 md:w-8/12 text-center">
-						<div
-							className="bg-[url(https://cdn.21st.dev/assets/mirror/35/354f63f88b57aceea4536df0c0cff0c3592aa46fe887ff910751fefc12f3e76c.gif)] h-[250px] sm:h-[350px] md:h-[400px] bg-center bg-no-repeat bg-contain"
-							aria-hidden="true"
-						>
-							<h1 className="text-center text-black text-6xl sm:text-7xl md:text-8xl pt-6 sm:pt-8">
-								404
-							</h1>
-						</div>
-
-						<div className="mt-[-50px]">
-							<h3 className="text-2xl text-black sm:text-3xl font-bold mb-4">
-								Look like you're lost
-							</h3>
-							<p className="mb-6 text-black sm:mb-5">
-								The page you are looking for is not available!
-							</p>
-
-							<Button
-								asChild
-								variant="default"
-								className="my-5 bg-green-600 hover:bg-green-700 "
+		<section className="w-full bg-background py-16 md:py-24">
+			<div className="mx-auto max-w-7xl px-4 md:px-6">
+				<div className="grid gap-12 md:grid-cols-2 md:gap-16">
+					<div>
+						<span className="inline-flex items-center border border-border bg-foreground/[0.02] px-2 py-0.5 font-mono text-[11px] tracking-wider text-foreground/60">
+							Error 404
+						</span>
+						<h1 className="mt-6 text-4xl font-light leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+							This page moved, or never existed
+						</h1>
+						<p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+							The link you followed does not lead anywhere on Colbe. Nothing is
+							broken on your side.
+						</p>
+						<div className="mt-8 flex flex-wrap gap-3">
+							<Link
+								href="/"
+								className="inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
 							>
-								<Link href="/">Go to Home</Link>
-							</Button>
+								Back to home
+							</Link>
+							<Link
+								href="/docs"
+								className="inline-flex h-10 items-center rounded-lg border border-border bg-secondary px-5 text-sm font-medium text-secondary-foreground transition-colors hover:bg-accent"
+							>
+								Search the docs
+							</Link>
+						</div>
+					</div>
+
+					<div className="md:pt-2">
+						<p className="text-base text-muted-foreground">
+							Where people usually go from here
+						</p>
+						<div className="mt-4 border-t border-border">
+							{links.map((link) => (
+								<Link
+									key={link.href}
+									href={link.href}
+									className="group/nf flex items-start justify-between gap-6 border-b border-border py-5"
+								>
+									<span className="flex flex-col gap-1">
+										<span className="text-lg font-medium text-foreground transition-colors group-hover/nf:text-foreground/70">
+											{link.title}
+										</span>
+										<span className="text-base leading-relaxed text-muted-foreground">
+											{link.description}
+										</span>
+									</span>
+									<ArrowUpRight
+										aria-hidden
+										className="mt-1 size-5 shrink-0 text-muted-foreground transition-transform motion-safe:group-hover/nf:-translate-y-0.5 motion-safe:group-hover/nf:translate-x-0.5"
+									/>
+								</Link>
+							))}
 						</div>
 					</div>
 				</div>
