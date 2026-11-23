@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
 
 const socialProviders: NonNullable<BetterAuthOptions["socialProviders"]> = {};
+const disableSignUp = process.env.DISABLE_SIGN_UP === "true";
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
@@ -12,6 +13,7 @@ if (googleClientId && googleClientSecret) {
 	socialProviders.google = {
 		clientId: googleClientId,
 		clientSecret: googleClientSecret,
+		disableSignUp,
 	};
 }
 
@@ -21,6 +23,7 @@ if (appleClientId && appleClientSecret) {
 	socialProviders.apple = {
 		clientId: appleClientId,
 		clientSecret: appleClientSecret,
+		disableSignUp,
 	};
 }
 
@@ -30,6 +33,7 @@ if (githubClientId && githubClientSecret) {
 	socialProviders.github = {
 		clientId: githubClientId,
 		clientSecret: githubClientSecret,
+		disableSignUp,
 	};
 }
 
@@ -45,6 +49,7 @@ export const auth = betterAuth({
 	}),
 	emailAndPassword: {
 		enabled: true,
+		disableSignUp,
 	},
 	socialProviders,
 });

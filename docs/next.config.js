@@ -3,7 +3,6 @@ import { createMDX } from "fumadocs-mdx/next";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	allowedDevOrigins: ["192.168.8.41"],
-	serverExternalPackages: ["@tursodatabase/database"],
 	experimental: {
 		optimizePackageImports: [
 			"lucide-react",

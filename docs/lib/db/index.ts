@@ -1,19 +1,18 @@
-import { Database } from "@tursodatabase/database/compat";
-import { drizzle } from "drizzle-orm/sqlite-proxy";
+import { createClient } from "@libsql/client";
+import { drizzle } from "drizzle-orm/libsql";
 
-export const client = new Database(process.env.DATABASE_PATH ?? "./auth.db");
+const url = process.env.TURSO_DATABASE_URL;
+const authToken = process.env.TURSO_AUTH_TOKEN;
 
-export const db = drizzle({
-	async run(sql, params) {
-		return client.prepare(sql).run(...params);
-	},
-	async get(sql, params, rowMode) {
-		const row = client.prepare(sql).get(...params);
-		if (row === undefined) return undefined;
-		return rowMode === "array" ? Object.values(row) : row;
-	},
-	async all(sql, params, rowMode) {
-		const rows = client.prepare(sql).all(...params);
-		return rowMode === "array" ? rows.map((row) => Object.values(row)) : rows;
-	},
+if (!url) {
+	throw new Error(
+		"TURSO_DATABASE_URL is required. Set it to your Turso libSQL database URL.",
+	);
+}
+
+export const client = createClient({
+	url,
+	authToken,
 });
+
+export const db = drizzle({ client });
