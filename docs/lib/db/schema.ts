@@ -1,4 +1,10 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+	index,
+	integer,
+	sqliteTable,
+	text,
+	uniqueIndex,
+} from "drizzle-orm/sqlite-core";
 
 export const user = sqliteTable("user", {
 	id: text("id").primaryKey(),
@@ -27,6 +33,29 @@ export const session = sqliteTable(
 			.references(() => user.id, { onDelete: "cascade" }),
 	},
 	(table) => [index("session_user_id_idx").on(table.userId)],
+);
+
+export const sessionAddress = sqliteTable(
+	"session_address",
+	{
+		id: text("id").primaryKey(),
+		sessionId: text("session_id")
+			.notNull()
+			.references(() => session.id, { onDelete: "cascade" }),
+		userId: text("user_id")
+			.notNull()
+			.references(() => user.id, { onDelete: "cascade" }),
+		ipAddress: text("ip_address").notNull(),
+		userAgent: text("user_agent"),
+		createdAt: integer("created_at", { mode: "timestamp" }).notNull(),
+	},
+	(table) => [
+		index("session_address_user_id_idx").on(table.userId),
+		uniqueIndex("session_address_session_ip_idx").on(
+			table.sessionId,
+			table.ipAddress,
+		),
+	],
 );
 
 export const account = sqliteTable(

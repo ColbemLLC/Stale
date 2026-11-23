@@ -17,6 +17,10 @@ const legalPages = [
 		name: "Community Guidelines",
 		href: "/legal/guidelines",
 	},
+	{
+		name: "Data Processing Addendum",
+		href: "/legal/dpa",
+	},
 ];
 
 export function LegalSidebar() {
