@@ -41,24 +41,6 @@ const GithubIcon = (p: React.SVGProps<SVGSVGElement>) => (
 	</svg>
 );
 
-const Logo = ({ className }: { className?: string }) => (
-	<svg
-		width="24"
-		height="18"
-		viewBox="0 0 60 45"
-		fill="none"
-		aria-hidden
-		className={className}
-	>
-		<path
-			fillRule="evenodd"
-			clipRule="evenodd"
-			d="M0 0H15V15H30V30H15V45H0V30V15V0ZM45 30V15H30V0H45H60V15V30V45H45H30V30H45Z"
-			className="fill-foreground"
-		/>
-	</svg>
-);
-
 const social =
 	"flex h-10 w-full items-center justify-center gap-2 rounded-lg border border-border bg-secondary text-sm font-medium text-secondary-foreground transition-colors hover:bg-accent disabled:opacity-60";
 const field =
@@ -84,7 +66,7 @@ export default function LoginClient() {
 	};
 
 	return (
-		<section className="relative min-h-svh overflow-hidden bg-background lg:grid lg:grid-cols-2">
+		<section className="relative min-h-svh overflow-hidden bg-background lg:grid lg:grid-cols-[40%_60%]">
 			<aside className="relative hidden h-full flex-col overflow-hidden border-e border-border bg-card p-10 lg:flex">
 				<div aria-hidden className="absolute inset-0">
 					<HalftoneBackground />
@@ -93,14 +75,6 @@ export default function LoginClient() {
 					aria-hidden
 					className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-background"
 				/>
-
-				<motion.div
-					{...fade(0)}
-					className="relative z-10 flex items-center gap-2"
-				>
-					<Logo />
-					<span className="text-base font-semibold tracking-tight">Colbe</span>
-				</motion.div>
 
 				<div className="relative z-10 mt-auto space-y-3">
 					<motion.h2
@@ -131,16 +105,6 @@ export default function LoginClient() {
 				</motion.div>
 
 				<div className="relative z-10 mx-auto w-full space-y-6 sm:max-w-sm">
-					<motion.div
-						{...fade(0.05)}
-						className="flex items-center gap-2 lg:hidden"
-					>
-						<Logo />
-						<span className="text-base font-semibold tracking-tight">
-							Colbe
-						</span>
-					</motion.div>
-
 					<div className="flex flex-col gap-2">
 						<motion.h1
 							{...fade(0.1)}
