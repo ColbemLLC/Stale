@@ -402,7 +402,7 @@ export function StaggeredNavFiles() {
 		isProductsPage ||
 		isResourcePage ||
 		isActive("/support") ||
-		isActive("register") ||
+		isActive("/register") ||
 		isActive("/login");
 	const isNarrowLeft = isDocs;
 	const leftPaneWidthClass = isNarrowLeft

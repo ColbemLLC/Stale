@@ -1,6 +1,7 @@
 import type { BetterAuthOptions } from "better-auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { APP_BASE_URL } from "@/lib/auth-urls";
 import { db } from "@/lib/db";
 import * as schema from "@/lib/db/schema";
 
@@ -47,6 +48,7 @@ export const auth = betterAuth({
 		provider: "sqlite",
 		schema,
 	}),
+	trustedOrigins: [APP_BASE_URL],
 	emailAndPassword: {
 		enabled: true,
 		disableSignUp,

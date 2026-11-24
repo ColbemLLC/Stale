@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 import { ChevronLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { HalftoneBackground } from "@/components/landing/halftone-bg";
 import { authClient } from "@/lib/auth-client";
+import { APP_BASE_URL } from "@/lib/auth-urls";
 
 const fade = (delay = 0) => ({
 	initial: { opacity: 0, y: 8 },
@@ -65,14 +65,13 @@ const field =
 	"h-10 w-full rounded-lg border border-border bg-muted/50 px-3 text-sm outline-none placeholder:text-muted-foreground focus:border-ring";
 
 export default function LoginClient() {
-	const router = useRouter();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 
 	const onSocial = (provider: "google" | "apple" | "github") =>
-		authClient.signIn.social({ provider, callbackURL: "app.colbe.cc" });
+		authClient.signIn.social({ provider, callbackURL: APP_BASE_URL });
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -81,7 +80,7 @@ export default function LoginClient() {
 		const res = await authClient.signIn.email({ email, password });
 		setLoading(false);
 		if (res.error) return setError(res.error.message ?? "Sign in failed");
-		router.push("/home");
+		window.location.assign(APP_BASE_URL);
 	};
 
 	return (

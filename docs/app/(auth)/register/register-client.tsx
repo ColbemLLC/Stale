@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 import { ChevronLeft, Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { HalftoneBackground } from "@/components/landing/halftone-bg";
 import { authClient } from "@/lib/auth-client";
+import { APP_BASE_URL } from "@/lib/auth-urls";
 
 const fade = (delay = 0) => ({
 	initial: { opacity: 0, y: 8 },
@@ -65,7 +65,6 @@ const field =
 	"h-10 w-full rounded-lg border border-border bg-muted/50 px-3 text-sm outline-none placeholder:text-muted-foreground focus:border-ring";
 
 export default function RegisterClient() {
-	const router = useRouter();
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -76,17 +75,22 @@ export default function RegisterClient() {
 	const onSocial = (provider: "google" | "apple" | "github") =>
 		authClient.signIn.social({
 			provider,
-			callbackURL: "app.colbe.cc/onboarding",
+			callbackURL: `${APP_BASE_URL}/onboarding`,
 		});
 
 	const onSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
 		setError("");
-		const res = await authClient.signUp.email({ name, email, password });
+		const res = await authClient.signUp.email({
+			name,
+			email,
+			password,
+			callbackURL: `${APP_BASE_URL}/onboarding`,
+		});
 		setLoading(false);
 		if (res.error) return setError(res.error.message ?? "Sign up failed");
-		router.push("/onboarding");
+		window.location.assign(`${APP_BASE_URL}/onboarding`);
 	};
 
 	return (
